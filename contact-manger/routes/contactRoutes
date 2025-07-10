@@ -1,0 +1,22 @@
+
+
+const express =require("express");
+const validateToken =require("../middleware/validateTokenHandler")
+const router =express.Router();
+const {getContact,createContact,getContactId,updateContactId,deleteContactId}=require("../controllers/contactController")
+
+
+router.use(validateToken);
+
+router.route("/")
+.get(getContact)
+.post(createContact)
+
+
+router.route("/:id")
+.get(getContactId)
+.put(updateContactId)
+.delete(deleteContactId)
+
+
+module.exports=router;
